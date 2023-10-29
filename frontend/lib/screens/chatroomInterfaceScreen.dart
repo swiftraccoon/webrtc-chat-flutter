@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pointycastle/api.dart';
-import 'package:pointycastle/export.dart';
+import 'package:pointycastle/export.dart' as pc;
 import '../services/encryptionService.dart';
 import '../services/apiService.dart';
 
@@ -13,8 +12,8 @@ class _ChatInterfaceScreenState extends State<ChatInterfaceScreen> {
   final EncryptionService _encryptionService = EncryptionService();
   final TextEditingController _messageController = TextEditingController();
   List<String> messages = []; // Placeholder for messages
-  RSAPublicKey otherUsersPublicKey;
-  RSAPrivateKey myPrivateKey;
+  pc.RSAPublicKey? otherUsersPublicKey;  // <-- Use alias and make nullable
+  pc.RSAPrivateKey? myPrivateKey;  // <-- Use alias and make nullable
 
   void _sendMessage() async {
     final message = _messageController.text;
