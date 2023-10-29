@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'auth_screen.dart';
-import 'chatroom_list_screen.dart';
-import 'chat_interface_screen.dart';
+import 'screens/loginScreen.dart';
+import 'screens/chatroomScreen.dart';
+import 'screens/chatroomInterfaceScreen.dart';
 
 void main() {
   runApp(MyApp());

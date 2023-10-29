@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'encryption_service.dart';
+import '../services/encryptionService.dart';
 
 class MessageScreen extends StatefulWidget {
   @override

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 import 'package:pointycastle/export.dart';
+import 'package:asn1lib/asn1lib.dart';
 
 class EncryptionService {
   AsymmetricKeyPair<PublicKey, PrivateKey> generateKeys() {

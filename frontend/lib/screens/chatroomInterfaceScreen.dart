@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'encryption_service.dart';
+import '../services/encryptionService.dart';
+import '../services/apiService.dart';
 
 class ChatInterfaceScreen extends StatefulWidget {
   @override
