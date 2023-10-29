@@ -1,6 +1,26 @@
 const User = require('../models/userModel');
 const generateToken = require('../utils/generateToken');
 const nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
+
+const sendConfirmationEmail = async (email, token) => {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    }
+  });
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Email Confirmation',
+    text: `Please confirm your email by clicking the following link: http://localhost:3000/confirm/${token}`
+  };
+
+  await transporter.sendMail(mailOptions);
+};
 
 exports.register = async (req, res) => {
   const { email, password } = req.body;
@@ -34,11 +54,13 @@ exports.register = async (req, res) => {
   });
 
   if (user) {
+    const token = generateToken(user._id);
     res.status(201).json({
       _id: user._id,
       email: user.email,
-      token: generateToken(user._id)
+      token: token
     });
+    await sendConfirmationEmail(email, token);
   } else {
     res.status(400).json({ message: 'Invalid user data' });
   }

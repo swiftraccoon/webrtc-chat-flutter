@@ -3,11 +3,12 @@ const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes');
 const chatRoutes = require('./routes/chatRoutes');
 const messageRoutes = require('./routes/messageRoutes');
+require('dotenv').config();  // Add this line to load environment variables
 
 const app = express();
 
 // Database connection
-mongoose.connect('mongodb://localhost:27017/chatApp', {
+mongoose.connect(process.env.MONGODB_URI, {  // Use environment variable here
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
