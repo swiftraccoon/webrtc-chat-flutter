@@ -46,6 +46,13 @@ class _AuthScreenState extends State<AuthScreen> {
             onPressed: _register,
             child: Text('Register'),
           ),
+          // Add this TextButton for "Forgot Password"
+          TextButton(
+            onPressed: () {
+              // TODO: Navigate to Forgot Password screen
+            },
+            child: Text('Forgot Password?'),
+          ),
         ],
       ),
     );

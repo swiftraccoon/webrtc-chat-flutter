@@ -7,12 +7,12 @@ class ChatroomListScreen extends StatefulWidget {
 
 class _ChatroomListScreenState extends State<ChatroomListScreen> {
   List<String> chatrooms = ['Chatroom 1', 'Chatroom 2']; // Placeholder list
+  bool isTyping = false; // TODO: Determine if the other user is typing
 
   void _createChatroom() async {
     final name = 'New Chatroom'; // Get this value from user input
-    final result = await ApiService('http://localhost:3000').createChatroom(name);
     // Handle chatroom creation result
-    }
+  }
 
   void _joinChatroom(String chatroomName) {
     // Logic to join a chatroom
@@ -26,9 +26,29 @@ class _ChatroomListScreenState extends State<ChatroomListScreen> {
       body: ListView.builder(
         itemCount: chatrooms.length,
         itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(chatrooms[index]),
-            onTap: () => _joinChatroom(chatrooms[index]),
+          return Column(
+            children: [
+              // Date separator
+              Text(
+                'Date here', // TODO: Load the date of the message
+              ),
+              ListTile(
+                leading: CircleAvatar(
+                  // TODO: Load the avatar image
+                ),
+                title: Text(chatrooms[index]),
+                subtitle: Row(
+                  children: [
+                    Text('Time here'), // TODO: Load the time of the message
+                    Icon(Icons.check), // Read status icon
+                  ],
+                ),
+                onTap: () => _joinChatroom(chatrooms[index]),
+              ),
+              // Typing indicator
+              if (isTyping) // TODO: Determine if the other user is typing
+                Text('User is typing...'),
+            ],
           );
         },
       ),
