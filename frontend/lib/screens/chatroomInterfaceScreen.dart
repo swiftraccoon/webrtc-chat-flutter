@@ -23,11 +23,16 @@ class _ChatInterfaceScreenState extends State<ChatInterfaceScreen> {
     }
 
   void _receiveMessage(String ciphertext) {
-    final plaintext = _encryptionService.decryptMessage(ciphertext, myPrivateKey);
-    // Display plaintext in the chat
-    setState(() {
-      messages.add(plaintext); // Placeholder
-    });
+    if (myPrivateKey != null) {
+      final plaintext = _encryptionService.decryptMessage(ciphertext, myPrivateKey!);
+      // Display plaintext in the chat
+      setState(() {
+        messages.add(plaintext); // Placeholder
+      });
+    } else {
+      // Handle the case where myPrivateKey is null
+      print("Error: myPrivateKey is null");
+    }
 
     @override
     void initState() {
@@ -39,8 +44,8 @@ class _ChatInterfaceScreenState extends State<ChatInterfaceScreen> {
 
     // Generate key pair and send public key to server
     final keyPair = _encryptionService.generateKeys();
-    myPrivateKey = keyPair.privateKey as RSAPrivateKey;
-    final myPublicKey = keyPair.publicKey as RSAPublicKey;
+    myPrivateKey = keyPair.privateKey as pc.RSAPrivateKey;
+    final myPublicKey = keyPair.publicKey as pc.RSAPublicKey;
     final myPublicKeyString = _encryptionService.exportPublicKey(myPublicKey);
     await ApiService('http://localhost:3000').sendPublicKey(myPublicKeyString, chatroomId);
 
