@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pointycastle/api.dart';
 import '../services/encryptionService.dart';
 import '../services/apiService.dart';
 
@@ -31,7 +32,6 @@ class _ChatInterfaceScreenState extends State<ChatInterfaceScreen> {
     @override
     void initState() {
     super.initState();
-    _joinChatroom();
     }
 
     void _joinChatroom() async {

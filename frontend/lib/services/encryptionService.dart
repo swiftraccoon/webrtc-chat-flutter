@@ -15,8 +15,8 @@ class EncryptionService {
 
   String exportPublicKey(RSAPublicKey publicKey) {
     final encoder = ASN1Sequence();
-    encoder.add(ASN1Integer(publicKey.modulus));
-    encoder.add(ASN1Integer(publicKey.exponent));
+    encoder.add(ASN1Integer(publicKey.modulus!));
+    encoder.add(ASN1Integer(publicKey.exponent!));
     final dataBase64 = base64.encode(encoder.encodedBytes);
     return dataBase64;
   }
