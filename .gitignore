@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+frontend/.dart_tool/package_config.json
+frontend/.dart_tool/package_config_subset
+frontend/pubspec.lock
