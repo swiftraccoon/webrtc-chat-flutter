@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pointycastle/api.dart';
+import 'package:pointycastle/export.dart';
 import '../services/encryptionService.dart';
 import '../services/apiService.dart';
 
